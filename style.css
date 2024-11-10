@@ -1,0 +1,314 @@
+:root {
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --secondary-color: #f8fafc;
+    --accent-color: #60a5fa;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-radius: clamp(8px, 2vw, 12px);
+    --shadow: 0 4px clamp(12px, 3vw, 20px) rgba(0, 0, 0, 0.08);
+    --menu-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: var(--padding-y) var(--padding-x);
+    background-color: var(--secondary-color);
+    min-height: 100vh;
+    color: var(--text-primary);
+}
+
+h1 {
+    text-align: center;
+    color: #0f172a;
+    font-size: clamp(1.2em, 4vw, 1.8em);
+    margin-bottom: clamp(16px, 4vw, 24px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+/* Styled file input container */
+.file-input-container {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto 24px auto;
+}
+
+#fileInput {
+    display: none;
+}
+
+.file-input-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(10px, 2.5vw, 14px) clamp(20px, 4vw, 32px);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: white;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+    border: 2px solid transparent;
+    letter-spacing: 0.01em;
+}
+
+.file-input-label:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+    background: linear-gradient(135deg, var(--primary-hover), var(--primary-color));
+}
+
+.file-input-label:active {
+    transform: translateY(0);
+}
+
+/* PDF Viewer styles */
+#pdfViewer {
+    width: 100%;
+    height: clamp(70vh, 80vh, 86vh);
+    border-radius: var(--border-radius);
+    border: 1px solid #e2e8f0;
+    overflow: auto;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    padding: clamp(12px, 3vw, 24px);
+    box-shadow: var(--shadow);
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    transition: var(--transition);
+    will-change: transform;
+}
+
+/* Canvas container */
+.page-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+    transition: var(--transition);
+    will-change: transform;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Canvas styling */
+canvas {
+    display: block;
+    margin: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    will-change: transform;
+    image-rendering: high-quality;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    filter: contrast(1.05) saturate(1.05);
+}
+
+/* Scrollbar styling */
+#pdfViewer::-webkit-scrollbar {
+    width: 12px;
+}
+
+#pdfViewer::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+#pdfViewer::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 10px;
+}
+
+#pdfViewer::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+/* Mobile responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+    
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    
+    .file-input-label {
+        padding: 10px 24px;
+        font-size: 0.95em;
+    }
+    
+    #pdfViewer {
+        height: 86vh;
+        padding: 16px;
+    }
+    
+    canvas {
+        margin: 8px auto;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --secondary-color: #0f172a;
+        --primary-color: #3b82f6;
+        --accent-color: #60a5fa;
+    }
+    
+    body {
+        color: #e2e8f0;
+    }
+    
+    h1 {
+        color: #f1f5f9;
+    }
+    
+    #pdfViewer {
+        background-color: #1e293b;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    #pdfViewer::-webkit-scrollbar-track {
+        background: #334155;
+    }
+    
+    #pdfViewer::-webkit-scrollbar-thumb {
+        background: #475569;
+        border: 3px solid #334155;
+    }
+    
+    #pdfViewer::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+    }
+}
+
+/* Update text layer styles for better clarity */
+.textLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    opacity: 0.9;
+    line-height: 1.0;
+    pointer-events: auto;
+    z-index: 1;
+    mix-blend-mode: darken;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.textLayer > span {
+    color: transparent;
+    position: absolute;
+    white-space: pre;
+    cursor: text;
+    transform-origin: 0% 0%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures;
+    text-size-adjust: none;
+    transition: color 0.2s ease;
+}
+
+/* Update selection styles */
+.textLayer ::selection {
+    background: transparent;
+}
+
+.textLayer ::-moz-selection {
+    background: transparent;
+}
+
+/* Screen size specific adjustments */
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+    
+    #pdfViewer {
+        padding: 8px;
+        height: 88vh;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    #pdfViewer {
+        height: 84vh;
+    }
+}
+
+@media (min-width: 769px) {
+    .selection-menu {
+        min-width: 160px;
+    }
+}
+
+.selection-menu {
+    position: fixed;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--menu-shadow);
+    z-index: 1000;
+    min-width: 140px;
+    padding: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+.text-magnifier {
+    position: fixed;
+    background: white;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--menu-shadow);
+    z-index: 1000;
+    font-size: 16px;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Dark mode support for menu and magnifier */
+@media (prefers-color-scheme: dark) {
+    .selection-menu,
+    .text-magnifier {
+        background: #1e293b;
+        color: #f1f5f9;
+    }
+}
+
+/* Add dark mode specific improvements */
+@media (prefers-color-scheme: dark) {
+    .textLayer {
+        mix-blend-mode: screen;
+        opacity: 0.2;
+    }
+    
+    canvas {
+        filter: brightness(0.95) contrast(1.15) saturate(1.05);
+    }
+}

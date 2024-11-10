@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PDF Reader</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+    <h1>PDF Reader</h1>
+    <div class="file-input-container">
+        <input type="file" id="fileInput" accept=".pdf" aria-label="Upload PDF file">
+        <label for="fileInput" class="file-input-label">Choose PDF File</label>
+    </div>
+    <div id="pdfViewer" role="document" aria-label="PDF Viewer"></div>
+    <div id="selectionMenu" class="selection-menu hidden" role="menu" aria-label="Text selection menu"></div>
+    <div id="loadingIndicator" class="hidden">Loading...</div>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
